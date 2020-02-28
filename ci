@@ -40,10 +40,10 @@
 KERNEL_NAME_RELEASE=2
 KERNEL_TYPE=1
 KERNEL_BRANCH_RELEASE=0
-KERNEL_ANDROID_VERSION=2
+KERNEL_ANDROID_VERSION=1
 KERNEL_CODENAME=1
 KERNEL_EXTEND=0
-KERNEL_CI=1
+KERNEL_CI=2
 KERNEL_CAM=1
 
 # Compiling For Mido // If mido was selected
@@ -86,7 +86,7 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 		# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
 		if [ "$KERNEL_CI" == "1" ] || [ "$KERNEL_CI" == "2" ];
 			then
-				git clone --depth=1 -b fusion-eas-rama-2 https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 .
+				git clone --depth=1 -b fusion-eas-rama-2 https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
 		fi
 
 		# Cloning AnyKernel Repository
