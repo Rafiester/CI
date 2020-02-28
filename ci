@@ -427,10 +427,10 @@ function compile_lave() {
 function init_patch() {
 
 # Download patch
+cd ${KERNEL}
 wget https://raw.githubusercontent.com/alanndz/build_kernel/fusion/patches/01.patch
 
 # Declare HEAD commit before patch
-cd ${KERNEL}
 RESET_COMMIT=$(git --no-pager log --pretty=format:'%h')
 
 # Declare specified kernel name for pie patch
