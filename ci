@@ -143,11 +143,9 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 			then
 				KERNEL="$(pwd)"
 				IMAGE="$(pwd)/out/arch/arm64/boot/Image.gz-dtb"
-				ANYKERNEL3="$(pwd)/AnyKernel3"
 		else
 			KERNEL="$(pwd)/kernel"
 			IMAGE="$(pwd)/kernel/out/arch/arm64/boot/Image.gz-dtb"
-			ANYKERNEL3="${KERNEL}/AnyKernel3"
 		fi
 		KERNEL_TEMP="$(pwd)/TEMP"
 		CODENAME="lavender"
@@ -375,7 +373,7 @@ function compile_mido() {
 	bot_build_success
 	cd ..
 	sendStick "${TELEGRAM_SUCCESS}"
-	cp ${IMAGE} ${ANYKERNEL3}
+	cp ${IMAGE} AnyKernel3
 	anykernel
 	kernel_upload
 }
@@ -413,7 +411,8 @@ function compile_lave() {
 	else
 		cd ${KERNEL}
 	fi
-        cp ${IMAGE} ${ANYKERNEL3}
+	cd ..
+        cp ${IMAGE} AnyKernel3
 	anykernel
 	kernel_upload
 	if [ "$NEW_PATCH_STATS" == "0" ];
