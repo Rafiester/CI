@@ -37,14 +37,14 @@
 # Camera Patch
 # 0 = Disable || 1 = Pie Patch + Q Patch
 #
-KERNEL_NAME_RELEASE=1
+KERNEL_NAME_RELEASE=2
 KERNEL_TYPE=1
 KERNEL_BRANCH_RELEASE=0
 KERNEL_ANDROID_VERSION=1
-KERNEL_CODENAME=0
-KERNEL_EXTEND=1
+KERNEL_CODENAME=1
+KERNEL_EXTEND=0
 KERNEL_CI=2
-KERNEL_CAM=1
+KERNEL_CAM=0
 
 # Compiling For Mido // If mido was selected
 if [ "$KERNEL_CODENAME" == "0" ];
@@ -86,7 +86,8 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 		# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
 		if [ "$KERNEL_CI" == "1" ] || [ "$KERNEL_CI" == "2" ];
 			then
-				git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
+				#git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
+				git clone --depth=1 -b 03000 https://Nicklas373:$git_token@github.com/Yasir-siddiqui/4.14 kernel
 		fi
 
 		# Cloning AnyKernel Repository
@@ -96,8 +97,8 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 		mkdir TEMP
 
 		# Define Kernel Scheduler
-		KERNEL_SCHED="EAS"
-		KERNEL_BRANCH="fusion-eas-rama-em"
+		KERNEL_SCHED="HMP"
+		KERNEL_BRANCH="03000"
 fi
 
 # Kernel Enviroment
@@ -146,6 +147,7 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 		else
 			KERNEL="$(pwd)/kernel"
 			IMAGE="$(pwd)/kernel/out/arch/arm64/boot/Image.gz-dtb"
+			ZIMAGE="$(pwd)/kernel/out/arch/arm64/boot/zImage"
 		fi
 		KERNEL_TEMP="$(pwd)/TEMP"
 		CODENAME="lavender"
@@ -413,6 +415,7 @@ function compile_lave() {
 	fi
 	cd ..
         cp ${IMAGE} AnyKernel3
+	cp ${ZIMAGE} AnyKernel3
 	anykernel
 	kernel_upload
 	if [ "$NEW_PATCH_STATS" == "0" ];
