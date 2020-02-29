@@ -414,7 +414,6 @@ function compile_lave() {
 	else
 		cd ${KERNEL}
 	fi
-	cd ..
         cp ${IMAGE} AnyKernel3
 	cp ${ZIMAGE} AnyKernel3
 	cp ${IMAGEOLD} AnyKernel3
