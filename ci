@@ -83,8 +83,14 @@ if [ "$KERNEL_CODENAME" == "0" ];
 elif [ "$KERNEL_CODENAME" == "1" ];
 	then
 
+		# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
+		if [ "$KERNEL_CI" == "1" ] || [ "$KERNEL_CI" == "2" ];
+			then
+				git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
+		fi
+
 		# Cloning AnyKernel Repository
-		git clone --depth=1 -b fusion https://github.com/alanndz/AnyKernel3 AnyKernel3
+		git clone --depth=1 -b fusion https://github.com/alanndz/AnyKernel3
 
 		# Create Temporary Folder
 		mkdir TEMP
@@ -133,12 +139,20 @@ if [ "$KERNEL_CODENAME" == "0" ];
 		TELEGRAM_DEVICE="Xiaomi Redmi Note 4x"
 elif [ "$KERNEL_CODENAME" == "1" ];
 	then
-	KERNEL="$(pwd)"
-	IMAGE="$(pwd)/out/arch/arm64/boot/Image.gz-dtb"
-	KERNEL_TEMP="$(pwd)/TEMP"
-	CODENAME="lavender"
-	KERNEL_CODE="Lavender"
-	TELEGRAM_DEVICE="Xiaomi Redmi Note 7"
+		if [ "$KERNEL_CI" == "0" ];
+			then
+				KERNEL="$(pwd)"
+				IMAGE="$(pwd)/out/arch/arm64/boot/Image.gz-dtb"
+				ANYKERNEL3="$(pwd)/AnyKernel3"
+		else
+			KERNEL="$(pwd)/kernel"
+			IMAGE="$(pwd)/kernel/out/arch/arm64/boot/Image.gz-dtb"
+			ANYKERNEL3="${KERNEL}/AnyKernel3"
+		fi
+		KERNEL_TEMP="$(pwd)/TEMP"
+		CODENAME="lavender"
+		KERNEL_CODE="Lavender"
+		TELEGRAM_DEVICE="Xiaomi Redmi Note 7"
 fi
 
 # Kernel version environment
