@@ -383,7 +383,7 @@ function compile_mido() {
 function compile_lave() {
 	cd ..
 	START=$(TZ=Asia/Jakarta date +"%s")
-	make -s -C ${KERNEL} ${CODENAME}-perf_defconfig O=out
+	make -s -C ${KERNEL} ${CODENAME}_defconfig O=out
 	PATH="/root/clang-2/bin/:${PATH}" \
 	make -C ${KERNEL} -j$(nproc --all) -> ${KERNEL_TEMP}/compile.log O=out \
 					CC=clang \
