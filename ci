@@ -43,7 +43,7 @@ KERNEL_BRANCH_RELEASE=0
 KERNEL_ANDROID_VERSION=1
 KERNEL_CODENAME=1
 KERNEL_EXTEND=0
-KERNEL_CI=2
+KERNEL_CI=0
 KERNEL_CAM=0
 
 # Compiling For Mido // If mido was selected
@@ -147,6 +147,7 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 		else
 			KERNEL="$(pwd)/kernel"
 			IMAGE="$(pwd)/kernel/out/arch/arm64/boot/Image.gz-dtb"
+			IMAGEOLD="$(pwd)/kernel/out/arch/arm64/boot/Image.gz"
 			ZIMAGE="$(pwd)/kernel/out/arch/arm64/boot/zImage"
 		fi
 		KERNEL_TEMP="$(pwd)/TEMP"
@@ -416,6 +417,7 @@ function compile_lave() {
 	cd ..
         cp ${IMAGE} AnyKernel3
 	cp ${ZIMAGE} AnyKernel3
+	cp ${IMAGEOLD} AnyKernel3
 	anykernel
 	kernel_upload
 	if [ "$NEW_PATCH_STATS" == "0" ];
