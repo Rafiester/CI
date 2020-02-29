@@ -43,7 +43,7 @@ KERNEL_BRANCH_RELEASE=0
 KERNEL_ANDROID_VERSION=1
 KERNEL_CODENAME=1
 KERNEL_EXTEND=0
-KERNEL_CI=2
+KERNEL_CI=1
 KERNEL_CAM=0
 
 # Compiling For Mido // If mido was selected
@@ -90,7 +90,7 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 		fi
 
 		# Cloning AnyKernel Repository
-		git clone --depth=1 -b fusion https://github.com/alanndz/AnyKernel3
+		git clone --depth=1 -b fusion https://github.com/alanndz/AnyKernel3 AnyKernel3
 
 		# Create Temporary Folder
 		mkdir TEMP
