@@ -375,7 +375,7 @@ function compile_mido() {
 	bot_build_success
 	cd ..
 	sendStick "${TELEGRAM_SUCCESS}"
-	cp ${IMAGE} AnyKernel3
+	cp ${IMAGE} ${ANYKERNEL3}
 	anykernel
 	kernel_upload
 }
@@ -413,7 +413,7 @@ function compile_lave() {
 	else
 		cd ${KERNEL}
 	fi
-        cp ${IMAGE} AnyKernel3
+        cp ${IMAGE} ${ANYKERNEL3}
 	anykernel
 	kernel_upload
 	if [ "$NEW_PATCH_STATS" == "0" ];
