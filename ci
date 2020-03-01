@@ -44,7 +44,7 @@ KERNEL_ANDROID_VERSION=1
 KERNEL_CODENAME=1
 KERNEL_EXTEND=0
 KERNEL_CI=2
-KERNEL_CAM=1
+KERNEL_CAM=0
 
 # Compiling For Mido // If mido was selected
 if [ "$KERNEL_CODENAME" == "0" ];
@@ -406,13 +406,6 @@ function compile_lave() {
 	bot_init_compile
 	bot_build_success
 	sendStick "${TELEGRAM_SUCCESS}"
-	if [ "$KERNEL_CI" == "1" ] || [ "$KERNEL_CI" == "2" ];
-		then
-			echo ""
-			cd ..
-	else
-		cd ${KERNEL}
-	fi
         cp ${IMAGE} AnyKernel3
 	anykernel
 	kernel_upload
