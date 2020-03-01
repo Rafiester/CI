@@ -43,7 +43,7 @@ KERNEL_BRANCH_RELEASE=0
 KERNEL_ANDROID_VERSION=1
 KERNEL_CODENAME=1
 KERNEL_EXTEND=0
-KERNEL_CI=2
+KERNEL_CI=1
 KERNEL_CAM=0
 
 # Compiling For Mido // If mido was selected
@@ -86,19 +86,21 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 		# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
 		if [ "$KERNEL_CI" == "1" ] || [ "$KERNEL_CI" == "2" ];
 			then
-				git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
-				#git clone --depth=1 -b 03000 https://Nicklas373:$git_token@github.com/Yasir-siddiqui/4.14 kernel
+				#git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
+				git clone --depth=1 -b master https://Nicklas373:$token@github.com/Yasir-siddiqui/msm-4.14 kernel
 		fi
 
 		# Cloning AnyKernel Repository
 		git clone --depth=1 -b fusion https://github.com/alanndz/AnyKernel3
 
+		# Cloning GCC (TEMP)
+		git clone --depth=1 -b master https://github.com/HANA-CI-Build-Project/aarch64-linux-android-4.9 gcc
 		# Create Temporary Folder
 		mkdir TEMP
 
 		# Define Kernel Scheduler
-		KERNEL_SCHED="EAS"
-		KERNEL_BRANCH="fusion-eas-rama-em"
+		KERNEL_SCHED="HMP"
+		KERNEL_BRANCH="master"
 fi
 
 # Kernel Enviroment
@@ -115,9 +117,10 @@ elif [ "$KERNEL_CI" == "2" ];
 fi
 
 # Clang environment
-export CLANG_PATH=/root/proton-10/bin
-export PATH=${CLANG_PATH}:${PATH}
-export LD_LIBRARY_PATH="/root/proton-10/bin/../lib:$PATH"
+#export CLANG_PATH=/root/proton-10/bin
+#export PATH=${CLANG_PATH}:${PATH}
+#export LD_LIBRARY_PATH="/root/proton-10/bin/../lib:$PATH"
+export CROSS_COMPILE="$(pwd)/gcc/arm64/bin/aarch64-linux-android-"
 
 # Kernel host environment
 if [ "$KERNEL_NAME_RELEASE" == "2" ];
@@ -384,12 +387,9 @@ function compile_lave() {
 	cd ..
 	START=$(TZ=Asia/Jakarta date +"%s")
 	make -s -C ${KERNEL} ${CODENAME}_defconfig O=out
-	PATH="/root/clang-2/bin/:${PATH}" \
+	PATH="$(pwd)/gcc/arm64/bin/:${PATH}" \
 	make -C ${KERNEL} -j$(nproc --all) -> ${KERNEL_TEMP}/compile.log O=out \
-					CC=clang \
-					CLANG_TRIPLE=aarch64-linux-gnu- \
-					CROSS_COMPILE=aarch64-linux-gnu- \
-					CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+					CROSS_COMPILE=${CROSS_COMPILE}
 	if ! [ -a $IMAGE ];
 		then
 			echo "kernel not found"
