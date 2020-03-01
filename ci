@@ -37,13 +37,13 @@
 # Camera Patch
 # 0 = Disable || 1 = Pie Patch + Q Patch
 #
-KERNEL_NAME_RELEASE=1
+KERNEL_NAME_RELEASE=2
 KERNEL_TYPE=1
 KERNEL_BRANCH_RELEASE=0
 KERNEL_ANDROID_VERSION=1
-KERNEL_CODENAME=0
-KERNEL_EXTEND=1
-KERNEL_CI=1
+KERNEL_CODENAME=1
+KERNEL_EXTEND=0
+KERNEL_CI=2
 KERNEL_CAM=0
 
 # Compiling For Mido // If mido was selected
@@ -406,15 +406,27 @@ function compile_lave() {
 	bot_init_compile
 	bot_build_success
 	sendStick "${TELEGRAM_SUCCESS}"
+	if [ "$KERNEL_CI" == "0" ];
+		then
+			echo ""
+	else
+		cd ..
+	fi
         cp ${IMAGE} AnyKernel3
 	anykernel
 	kernel_upload
-	if [ "$NEW_PATCH_STATS" == "0" ];
-		then
-			new_patch
-	elif [ "$NEW_PATCH_STATS" == "1" ];
+	if [ "$KERNEL_CAM" == "0" ];
 		then
 			echo "Build Done :3"
+	elif [ "$KERNEL_CAM" == "1" ];
+		then
+			if [ "$NEW_PATCH_STATS" == "0" ];
+				then
+					new_patch
+			elif [ "$NEW_PATCH_STATS" == "1" ];
+				then
+					echo "Build Done :3"
+			fi
 	fi
 }
 
