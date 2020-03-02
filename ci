@@ -84,10 +84,13 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 	then
 
 		# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
-		if [ "$KERNEL_CI" == "1" ] || [ "$KERNEL_CI" == "2" ];
+		if [ "$KERNEL_CI" == "1" ]
 			then
-				git clone --depth=1 -b fusion-new-rama https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
+				git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
 				#git clone --depth=1 -b master https://Nicklas373:$token@github.com/Yasir-siddiqui/msm-4.14 kernel
+		elif [ "$KERNEL_CI" == "2" ]
+			then
+				git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
 		fi
 
 		# Cloning AnyKernel Repository
@@ -97,8 +100,8 @@ elif [ "$KERNEL_CODENAME" == "1" ];
 		mkdir TEMP
 
 		# Define Kernel Scheduler
-		KERNEL_SCHED="HMP"
-		KERNEL_BRANCH="master"
+		KERNEL_SCHED="EAS"
+		KERNEL_BRANCH="fusion-eas-rama-em"
 fi
 
 # Kernel Enviroment
@@ -189,7 +192,7 @@ if [ "$KERNEL_BRANCH_RELEASE" == "1" ];
 
 		if [ "$KERNEL_NAME_RELEASE" == "2" ];
 			then
-				FUSION_CODENAME="Fuxi"
+				FUSION_CODENAME="Durandal"
 				KERNEL_VERSION="r2"
 				KVERSION="${FUSION_CODENAME}-${KERNEL_VERSION}"
 				ZIP_NAME="${KERNEL_NAME}-${KVERSION}-${CODENAME}-$(TZ=Asia/Jakarta date "+%H%M-%d%m%Y").zip"
@@ -200,7 +203,7 @@ elif [ "$KERNEL_BRANCH_RELEASE" == "0" ];
 
 		if [ "$KERNEL_NAME_RELEASE" == "2" ];
 			then
-				FUSION_CODENAME="Fuxi"
+				FUSION_CODENAME="Durandal"
 				KERNEL_VERSION="r2"
 				KVERSION="${FUSION_CODENAME}-$(git log --pretty=format:'%h' -1)-$(TZ=Asia/Jakarta date "+%H%M")"
 				ZIP_NAME="${KERNEL_NAME}-${FUSION_CODENAME}-${CODENAME}-$(git log --pretty=format:'%h' -1)-$(TZ=Asia/Jakarta date "+%H%M").zip"
@@ -384,7 +387,8 @@ function compile_lave() {
 	cd ..
 	START=$(TZ=Asia/Jakarta date +"%s")
 	make -s -C ${KERNEL} ${CODENAME}_defconfig O=out
-	PATH="/root/proton-10/bin/:${PATH}" \                                                                                   make -C ${KERNEL} -j$(nproc --all) -> ${KERNEL_TEMP}/compile.log O=out \
+	PATH="/root/proton-10/bin/:${PATH}" \
+	make -C ${KERNEL} -j$(nproc --all) -> ${KERNEL_TEMP}/compile.log O=out \
 					CC=clang \
 					CLANG_TRIPLE=aarch64-linux-gnu- \
 					CROSS_COMPILE=aarch64-linux-gnu- \
