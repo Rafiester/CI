@@ -67,10 +67,10 @@ if [ "$KERNEL_CODENAME" == "0" ];
 				# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
 				if [ "$KERNEL_CI" == "2" ]
 					then
-					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18-2 kernel
+					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
 				elif [ "$KERNEL_CI" == "1" ]
 					then
-					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18-2 kernel
+					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
 				fi
 
 				# Define Kernel Scheduler
