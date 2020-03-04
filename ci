@@ -64,14 +64,8 @@ if [ "$KERNEL_CODENAME" == "0" ];
 
 		elif [ "$KERNEL_NAME_RELEASE" == "1" ];
 			then
-				# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
-				if [ "$KERNEL_CI" == "2" ]
-					then
-					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
-				elif [ "$KERNEL_CI" == "1" ]
-					then
-					git clone --depth=1 -b kasumi https://Nicklas373:$token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
-				fi
+				# Cloning Kernel Repository
+				git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
 
 				# Define Kernel Scheduler
 				KERNEL_SCHED="EAS"
@@ -89,15 +83,8 @@ if [ "$KERNEL_CODENAME" == "0" ];
 elif [ "$KERNEL_CODENAME" == "1" ];
 	then
 
-		# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
-		if [ "$KERNEL_CI" == "2" ]
-			then
-				git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
-				#git clone --depth=1 -b master https://Nicklas373:$token@github.com/Yasir-siddiqui/msm-4.14 kernel
-		elif [ "$KERNEL_CI" == "1" ]
-			then
-				git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
-		fi
+		# Cloning Kernel Repository
+		git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
 
 		# Cloning AnyKernel Repository
 		git clone --depth=1 -b fusion https://github.com/alanndz/AnyKernel3
