@@ -40,10 +40,10 @@
 KERNEL_NAME_RELEASE=1
 KERNEL_TYPE=1
 KERNEL_BRANCH_RELEASE=0
-KERNEL_ANDROID_VERSION=1
+KERNEL_ANDROID_VERSION=0
 KERNEL_CODENAME=0
 KERNEL_EXTEND=1
-KERNEL_CI=0
+KERNEL_CI=1
 KERNEL_CAM=0
 
 # Compiling For Mido // If mido was selected
@@ -64,12 +64,18 @@ if [ "$KERNEL_CODENAME" == "0" ];
 
 		elif [ "$KERNEL_NAME_RELEASE" == "1" ];
 			then
-				# Clone kernel & other repositories earlier
-				git clone --depth=1 -b dev/eas https://github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
+				# Cloning Kernel Repository // If compiled by Drone CI or Semaphore CI
+				if [ "$KERNEL_CI" == "2" ]
+					then
+					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18-2 kernel
+				elif [ "$KERNEL_CI" == "1" ]
+					then
+					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18-2 kernel
+				fi
 
 				# Define Kernel Scheduler
 				KERNEL_SCHED="EAS"
-				KERNEL_BRANCH="dev/eas"
+				KERNEL_BRANCH="kasumi"
 
 				# Detect Android Version earlier and clone AnyKernel depend on android version
 				if [ "$KERNEL_ANDROID_VERSION" == "0" ];
