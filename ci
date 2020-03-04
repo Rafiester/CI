@@ -70,7 +70,7 @@ if [ "$KERNEL_CODENAME" == "0" ];
 					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
 				elif [ "$KERNEL_CI" == "1" ]
 					then
-					git clone --depth=1 -b kasumi https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
+					git clone --depth=1 -b kasumi https://Nicklas373:$token@github.com/Nicklas373/kernel_xiaomi_msm8953-3.18 kernel
 				fi
 
 				# Define Kernel Scheduler
