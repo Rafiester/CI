@@ -43,7 +43,7 @@ KERNEL_BRANCH_RELEASE=0
 KERNEL_ANDROID_VERSION=0
 KERNEL_CODENAME=0
 KERNEL_EXTEND=1
-KERNEL_CI=0
+KERNEL_CI=1
 KERNEL_CAM=0
 
 # Compiling For Mido // If mido was selected
@@ -87,8 +87,12 @@ if [ "$KERNEL_CODENAME" == "0" ];
 elif [ "$KERNEL_CODENAME" == "1" ];
 	then
 
-		# Cloning Kernel Repository
-		git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
+		if [ "$KERNEL_CI" == "1" ]
+			then
+				git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
+		else
+			git clone --depth=1 -b fusion-eas-rama-em https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 kernel
+		fi
 
 		# Cloning AnyKernel Repository
 		git clone --depth=1 -b fusion https://github.com/alanndz/AnyKernel3
