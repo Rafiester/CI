@@ -452,12 +452,13 @@ ZIP_NAME="${KERNEL_NAME}-${FUSION_CODENAME}-${CODENAME}-New_CAM-$(git log --pret
 # Apply pie camera patch
 git am 02.patch
 
+# Tell if new cam patch already executed
+NEW_PATCH_STATS="1"
+
 # Begin init compiling process
 cd ..
 compile_lave
 
-# Tell if new cam patch already executed
-NEW_PATCH_STATS="1"
 }
 
 # AnyKernel
@@ -498,7 +499,7 @@ if [ "$KERNEL_CODENAME" == "1" ];
 				NEW_PATCH_STATS="0"
 
 				# Compile
-				init_patch
+				compile
 		elif [ "$KERNEL_CAM" == "0" ];
 			then
 				compile_lave
