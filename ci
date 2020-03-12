@@ -499,7 +499,7 @@ if [ "$KERNEL_CODENAME" == "1" ];
 				NEW_PATCH_STATS="0"
 
 				# Compile
-				compile
+				compile_lave
 		elif [ "$KERNEL_CAM" == "0" ];
 			then
 				compile_lave
