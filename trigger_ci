@@ -135,48 +135,48 @@ elif [ "$user" == "1" ];
 		echo "Configuring CI Script"
 		if [ "$decision" == "1" ];
 			then
-				sed -i -e 's/KERNEL_CI=2/KERNEL_CI=0/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_CI=1/KERNEL_CI=0/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_CI=2/KERNEL_CI=0/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_CI=1/KERNEL_CI=0/g'  ~/CI/ci
 		elif [ "$decision" == "2" ];
 			then
-				sed -i -e 's/KERNEL_CI=0/KERNEL_CI=2/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_CI=1/KERNEL_CI=2/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_CI=0/KERNEL_CI=2/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_CI=1/KERNEL_CI=2/g'  ~/CI/ci
 		elif [ "$decision" == "3" ];
 			then
-				sed -i -e 's/KERNEL_CI=0/KERNEL_CI=1/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_CI=2/KERNEL_CI=1/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_CI=0/KERNEL_CI=1/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_CI=2/KERNEL_CI=1/g'  ~/CI/ci
 		fi
 		if [ "$kname" == "1" ];
 			then
-				sed -i -e 's/KERNEL_NAME_RELEASE=1/KERNEL_NAME_RELEASE=0/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_NAME_RELEASE=2/KERNEL_NAME_RELEASE=0/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_TYPE=1/KERNEL_TYPE=0/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_EXTEND=1/KERNEL_EXTEND=0/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_EXTEND=2/KERNEL_EXTEND=0/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_NAME_RELEASE=1/KERNEL_NAME_RELEASE=0/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_NAME_RELEASE=2/KERNEL_NAME_RELEASE=0/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_TYPE=1/KERNEL_TYPE=0/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_EXTEND=1/KERNEL_EXTEND=0/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_EXTEND=2/KERNEL_EXTEND=0/g'  ~/CI/ci
 		elif [ "$kname" == "2" ];
 			then
-				sed -i -e 's/KERNEL_NAME_RELEASE=0/KERNEL_NAME_RELEASE=1/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_NAME_RELEASE=2/KERNEL_NAME_RELEASE=1/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_TYPE=0/KERNEL_TYPE=1/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_EXTEND=0/KERNEL_EXTEND=1/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_EXTEND=0/KERNEL_EXTEND=1/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_NAME_RELEASE=0/KERNEL_NAME_RELEASE=1/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_NAME_RELEASE=2/KERNEL_NAME_RELEASE=1/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_TYPE=0/KERNEL_TYPE=1/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_EXTEND=0/KERNEL_EXTEND=1/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_EXTEND=0/KERNEL_EXTEND=1/g'  ~/CI/ci
 		elif [ "$kname" == "3" ];
 			then
-				sed -i -e 's/KERNEL_NAME_RELEASE=0/KERNEL_NAME_RELEASE=2/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_NAME_RELEASE=1/KERNEL_NAME_RELEASE=2/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_TYPE=0/KERNEL_TYPE=1/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_TYPE=0/KERNEL_TYPE=1/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_EXTEND=1/KERNEL_EXTEND=0/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_EXTEND=1/KERNEL_EXTEND=0/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_NAME_RELEASE=0/KERNEL_NAME_RELEASE=2/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_NAME_RELEASE=1/KERNEL_NAME_RELEASE=2/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_TYPE=0/KERNEL_TYPE=1/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_TYPE=0/KERNEL_TYPE=1/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_EXTEND=1/KERNEL_EXTEND=0/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_EXTEND=1/KERNEL_EXTEND=0/g'  ~/CI/ci
 		fi
 		if [ "$kdev" == "1" ];
 			then
-				sed -i -e 's/KERNEL_CODENAME=1/KERNEL_CODENAME=0/g'  ~/hana/CI/ci
-				sed -i -e 's/git clone --depth=1 -b new-eas-2 https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 ./#git clone --depth=1 -b new-eas-2 https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 ./g' ~/hana/build_kernel/.circleci/build.sh
+				sed -i -e 's/KERNEL_CODENAME=1/KERNEL_CODENAME=0/g'  ~/CI/ci
+				sed -i -e 's/git clone --depth=1 -b fusion-eas-rama-test https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 ./#git clone --depth=1 -b new-eas-2 https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 ./g' ~/build_kernel/.circleci/build.sh
 		elif [ "$kdev" == "2" ];
 			then
-				sed -i -e 's/KERNEL_CODENAME=0/KERNEL_CODENAME=1/g'  ~/hana/CI/ci
-				sed -i -e 's/#git clone --depth=1 -b new-eas-2 https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 ./git clone --depth=1 -b new-eas-2 https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 ./g' ~/hana/build_kernel/.circleci/build.sh
+				sed -i -e 's/KERNEL_CODENAME=0/KERNEL_CODENAME=1/g'  ~/CI/ci
+				sed -i -e 's/#git clone --depth=1 -b fusion-eas-rama-test https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 ./git clone --depth=1 -b new-eas-2 https://Nicklas373:$git_token@github.com/Nicklas373/kernel_xiaomi_lavender-4.4 ./g' ~/build_kernel/.circleci/build.sh
 				echo ""
 				echo "Want to use custom cam ?"
 				echo "1. yes"
@@ -185,31 +185,31 @@ elif [ "$user" == "1" ];
 				read -s cam
 				if [ "$cam" == "1" ];
 					then
-						sed -i -e 's/KERNEL_CAM=0/KERNEL_CAM=1/g'  ~/hana/CI/ci
+						sed -i -e 's/KERNEL_CAM=0/KERNEL_CAM=1/g'  ~/CI/ci
 				elif [ "$cam" == "2" ];
 					then
-						sed -i -e 's/KERNEL_CAM=1/KERNEL_CAM=0/g'  ~/hana/CI/ci
+						sed -i -e 's/KERNEL_CAM=1/KERNEL_CAM=0/g'  ~/CI/ci
 				fi
 		fi
 		if [ "$kversion" == "1" ];
 			then
-				sed -i -e 's/KERNEL_ANDROID_VERSION=2/KERNEL_ANDROID_VERSION=0/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_ANDROID_VERSION=1/KERNEL_ANDROID_VERSION=0/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_ANDROID_VERSION=2/KERNEL_ANDROID_VERSION=0/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_ANDROID_VERSION=1/KERNEL_ANDROID_VERSION=0/g'  ~/CI/ci
 		elif [ "$kversion" == "2" ];
 			then
-				sed -i -e 's/KERNEL_ANDROID_VERSION=2/KERNEL_ANDROID_VERSION=1/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_ANDROID_VERSION=0/KERNEL_ANDROID_VERSION=1/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_ANDROID_VERSION=2/KERNEL_ANDROID_VERSION=1/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_ANDROID_VERSION=0/KERNEL_ANDROID_VERSION=1/g'  ~/CI/ci
 		elif [ "$kversion" == "3" ];
 			then
-				sed -i -e 's/KERNEL_ANDROID_VERSION=1/KERNEL_ANDROID_VERSION=2/g'  ~/hana/CI/ci
-				sed -i -e 's/KERNEL_ANDROID_VERSION=0/KERNEL_ANDROID_VERSION=2/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_ANDROID_VERSION=1/KERNEL_ANDROID_VERSION=2/g'  ~/CI/ci
+				sed -i -e 's/KERNEL_ANDROID_VERSION=0/KERNEL_ANDROID_VERSION=2/g'  ~/CI/ci
 		fi
 		if [ "$krelease" == "1" ];
 			then
-				sed -i -e 's/KERNEL_BRANCH_RELEASE=0/KERNEL_BRANCH_RELEASE=1/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_BRANCH_RELEASE=0/KERNEL_BRANCH_RELEASE=1/g'  ~/CI/ci
 		elif [ "$krelease" == "2" ];
 			then
-				sed -i -e 's/KERNEL_BRANCH_RELEASE=1/KERNEL_BRANCH_RELEASE=0/g'  ~/hana/CI/ci
+				sed -i -e 's/KERNEL_BRANCH_RELEASE=1/KERNEL_BRANCH_RELEASE=0/g'  ~/CI/ci
 		fi
 
 		echo "Triggering CI"
