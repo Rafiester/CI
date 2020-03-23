@@ -221,15 +221,15 @@ elif [ "$user" == "1" ];
 		if [ "$decision" == "1" ];
 			then
 				echo "Push to Circle-CI"
-				cd ~/hana/build_kernel
+				cd ~/build_kernel
 		elif [ "$decision" == "2" ];
 			then
 				echo "Push to Semaphore-CI"
-				cd ~/hana/Semaphore-CI
+				cd ~/Semaphore-CI
 		elif [ "$decision" == "3" ];
 			then
 				echo "Push to Drone-CI"
-				cd ~/hana/Drone-CI
+				cd ~/Drone-CI
 		fi
 
 		# Trigger CI
