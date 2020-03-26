@@ -9,7 +9,6 @@ My personal CI Kernel Builder Scripts, and also just change any other in this sc
 
 # Available for:
 	- Xiaomi Redmi Note 4x (Mido)
-	- Xiaomi Redmi Note 7  (Lavender)
 
 # Compatible for:
 	- Circle-CI
@@ -17,3 +16,4 @@ My personal CI Kernel Builder Scripts, and also just change any other in this sc
 	- Semaphore-CI
 
 # HANA-CI Build Project | 2016-2020
+# AvariceProjectX | 2019-2020
