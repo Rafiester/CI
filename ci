@@ -24,9 +24,9 @@ export ARCH=arm64
 		KERNEL_BOT="Circle-CI"
 
 # Clang environment
-export CLANG_PATH=/root/twisted-11/bin
+export CLANG_PATH=/root/root/proton-10/bin
 export PATH=${CLANG_PATH}:${PATH}
-export LD_LIBRARY_PATH="/root/twisted-11/bin/../lib:$PATH"
+export LD_LIBRARY_PATH="/root/root/proton-10/bin/../lib:$PATH"
 
 # Kernel host environment
 	export KBUILD_BUILD_USER=Rafiester
@@ -113,7 +113,7 @@ function compile_mido() {
 
 	START=$(TZ=Asia/Jakarta date +"%s")
 	make -s -C ${KERNEL} ${CODENAME}_defconfig O=out
-	PATH="/root/twisted-11/bin/:${PATH}" \
+	PATH="/root/root/proton-10/bin/:${PATH}" \
         make -C ${KERNEL} -j$(nproc --all) -> ${KERNEL_TEMP}/compile.log O=out \
 				CC=clang \
 				CLANG_TRIPLE=aarch64-linux-gnu- \
