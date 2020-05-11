@@ -11,11 +11,11 @@
 # Compiling For Mido Devices
 		# Create Temporary Folder
 		mkdir TEMP
-						git clone --depth=1 -b staging https://github.com/Rafiester/kernel_xiaomi_msm8953 kernel
+						git clone --depth=1 -b dev/pcx https://github.com/Avarice12/kernel_xiaomi_mido-3.18 kernel
 
 				# Define Kernel Scheduler
 				KERNEL_SCHED="EAS"
-				KERNEL_BRANCH="staging"
+				KERNEL_BRANCH="dev/pcx"
 
 						git clone --depth=1 -b master https://github.com/Rafiester/AnyKernel3
 
@@ -24,9 +24,9 @@ export ARCH=arm64
 		KERNEL_BOT="Circle-CI"
 
 # Clang environment
-export CLANG_PATH=/root/proton-10/bin
+export CLANG_PATH=/root/twisted-11/bin
 export PATH=${CLANG_PATH}:${PATH}
-export LD_LIBRARY_PATH="/root/proton-10/bin/../lib:$PATH"
+export LD_LIBRARY_PATH="/root/twisted-11/bin/../lib:$PATH"
 
 # Kernel host environment
 	export KBUILD_BUILD_USER=Rafiester
@@ -113,7 +113,7 @@ function compile_mido() {
 
 	START=$(TZ=Asia/Jakarta date +"%s")
 	make -s -C ${KERNEL} ${CODENAME}_defconfig O=out
-	PATH="/root/proton-10/bin/:${PATH}" \
+	PATH="/root/twisted-11/bin/:${PATH}" \
         make -C ${KERNEL} -j$(nproc --all) -> ${KERNEL_TEMP}/compile.log O=out \
 				CC=clang \
 				CLANG_TRIPLE=aarch64-linux-gnu- \
