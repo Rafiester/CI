@@ -1,10 +1,11 @@
 #!bin/bash
 #
-# PureCAFx Kernel Builder Script || For Continous Integration
+# Avarice Kernel Builder Script || For Continous Integration
 #
 # Copyright 2019, Ahmad Thoriq Najahi "Najahiii" <najahiii@outlook.co.id>
 # Copyright 2019, alanndz <alanmahmud0@gmail.com>
 # Copyright 2020, Dicky Herlambang "Nicklas373" <herlambangdicky5@gmail.com>
+# Copyright 2021, Rafi Ramadhan "Rafiester" <rafi.haqqi@gmail.com@gmail.com>
 # Copyright 2016-2020, HANA-CI Build Project
 # SPDX-License-Identifier: GPL-3.0-or-later
 
@@ -17,11 +18,11 @@ TELEGRAM_TOKEN=${token}
 TELEGRAM_BOT_ID=${telegram_bot_id}
 TELEGRAM_GROUP_ID=${telegram_group_aln_id}
 
-git clone --depth=1 -b 11 https://Rafiester:$TELEGRAM_TOKEN@github.com/Rafiester/kernel_xiaomi_msm8953-4.9 kernel
+git clone --depth=1 -b 11-personal https://Rafiester:$TELEGRAM_TOKEN@github.com/Rafiester/kernel_xiaomi_msm8953-4.9 kernel
 
 # Define Kernel Scheduler
 KERNEL_SCHED="EAS"
-KERNEL_BRANCH="dev/pcx"
+KERNEL_BRANCH="11-personal"
 
 git clone --depth=1 -b master https://github.com/Rafiester/AnyKernel3
 
@@ -30,9 +31,9 @@ export ARCH=arm64
 KERNEL_BOT="Circle-CI"
 
 # Clang environment
-export CLANG_PATH=/root/proton-10/bin
+export CLANG_PATH=/root/proton-clang/bin
 export PATH=${CLANG_PATH}:${PATH}
-export LD_LIBRARY_PATH="/root/proton-10/bin/../lib:$PATH"
+export LD_LIBRARY_PATH="/root/proton-clang/bin/../lib:$PATH"
 
 # Kernel host environment
 export KBUILD_BUILD_USER=Rafiester
@@ -47,14 +48,14 @@ KERNEL_CODE="Mido"
 TELEGRAM_DEVICE="Xiaomi Redmi Note 4x"
 
 # Kernel version environment
-KERNEL_REV="3.18"
+KERNEL_REV="4.9"
 KERNEL_NAME="PureCAFx"
 
 KERNEL_SUFFIX="Kernel"
 KERNEL_DATE="$(TZ=Asia/Jakarta date +%Y%m%d-%H%M)"
-KERNEL_ANDROID_VER="10"
-KERNEL_TAG="Q"
-KERNEL_RELEASE="BETA"
+KERNEL_ANDROID_VER="11"
+KERNEL_TAG="R"
+KERNEL_RELEASE="PERSONAL"
 
 TELEGRAM_FILENAME="${KERNEL_NAME}-${KERNEL_SUFFIX}-${KERNEL_CODE}-${KERNEL_REV}-${KERNEL_SCHED}-${KERNEL_TAG}-${KERNEL_DATE}.zip"
 
@@ -115,7 +116,7 @@ function compile_mido() {
 
 	START=$(TZ=Asia/Jakarta date +"%s")
 	make -s -C ${KERNEL} ${CODENAME}_defconfig O=out
-	PATH="/root/proton-10/bin/:${PATH}" \
+	PATH="/root/proton-clang/bin/:${PATH}" \
         make -C ${KERNEL} -j$(nproc --all) -> ${KERNEL_TEMP}/compile.log O=out \
 				CC=clang \
 				CLANG_TRIPLE=aarch64-linux-gnu- \
