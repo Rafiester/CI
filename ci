@@ -9,19 +9,25 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 # Compiling For Mido Devices
-		# Create Temporary Folder
-		mkdir TEMP
-						git clone --depth=1 -b dev/pcx https://github.com/Avarice12/kernel_xiaomi_mido-3.18 kernel
+# Create Temporary Folder
+mkdir TEMP
 
-				# Define Kernel Scheduler
-				KERNEL_SCHED="EAS"
-				KERNEL_BRANCH="dev/pcx"
+# Telegram Bot
+TELEGRAM_TOKEN=${token}
+TELEGRAM_BOT_ID=${telegram_bot_id}
+TELEGRAM_GROUP_ID=${telegram_group_aln_id}
 
-						git clone --depth=1 -b master https://github.com/Rafiester/AnyKernel3
+git clone --depth=1 -b 11 https://Rafiester:$TELEGRAM_TOKEN@github.com/Rafiester/kernel_xiaomi_msm8953-4.9 kernel
+
+# Define Kernel Scheduler
+KERNEL_SCHED="EAS"
+KERNEL_BRANCH="dev/pcx"
+
+git clone --depth=1 -b master https://github.com/Rafiester/AnyKernel3
 
 # Kernel Enviroment
 export ARCH=arm64
-		KERNEL_BOT="Circle-CI"
+KERNEL_BOT="Circle-CI"
 
 # Clang environment
 export CLANG_PATH=/root/proton-10/bin
@@ -29,30 +35,26 @@ export PATH=${CLANG_PATH}:${PATH}
 export LD_LIBRARY_PATH="/root/proton-10/bin/../lib:$PATH"
 
 # Kernel host environment
-	export KBUILD_BUILD_USER=Rafiester
-	export KBUILD_BUILD_HOST=${KERNEL_BOT}
+export KBUILD_BUILD_USER=Rafiester
+export KBUILD_BUILD_HOST=${KERNEL_BOT}
 
 # Kernel directory environment
-		IMAGE="$(pwd)/kernel/out/arch/arm64/boot/Image.gz-dtb"
-		KERNEL="$(pwd)/kernel"
-		KERNEL_TEMP="$(pwd)/TEMP"
-		CODENAME="mido"
-		KERNEL_CODE="Mido"
-		TELEGRAM_DEVICE="Xiaomi Redmi Note 4x"
+IMAGE="$(pwd)/kernel/out/arch/arm64/boot/Image.gz-dtb"
+KERNEL="$(pwd)/kernel"
+KERNEL_TEMP="$(pwd)/TEMP"
+CODENAME="mido"
+KERNEL_CODE="Mido"
+TELEGRAM_DEVICE="Xiaomi Redmi Note 4x"
 
 # Kernel version environment
-		KERNEL_REV="3.18"
-		KERNEL_NAME="PureCAFx"
+KERNEL_REV="3.18"
+KERNEL_NAME="PureCAFx"
 
 KERNEL_SUFFIX="Kernel"
 KERNEL_DATE="$(TZ=Asia/Jakarta date +%Y%m%d-%H%M)"
-		KERNEL_ANDROID_VER="10"
-		KERNEL_TAG="Q"
-		KERNEL_RELEASE="BETA"
-
-# Telegram Bot
-			TELEGRAM_BOT_ID=${telegram_bot_id}
-			TELEGRAM_GROUP_ID=${telegram_group_aln_id}
+KERNEL_ANDROID_VER="10"
+KERNEL_TAG="Q"
+KERNEL_RELEASE="BETA"
 
 TELEGRAM_FILENAME="${KERNEL_NAME}-${KERNEL_SUFFIX}-${KERNEL_CODE}-${KERNEL_REV}-${KERNEL_SCHED}-${KERNEL_TAG}-${KERNEL_DATE}.zip"
 
